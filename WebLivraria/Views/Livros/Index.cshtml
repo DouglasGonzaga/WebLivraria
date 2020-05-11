@@ -1,0 +1,83 @@
+﻿@model IEnumerable<WebLivraria.Models.Livro>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Home</h2>
+
+<div class="row">
+    <div class=" col-md-3">
+        <p>
+            <a asp-action="Create" class="btn btn-primary btn-lg">Nova Solicitação</a>
+        </p>
+    </div>
+    <div class=" col-md-9">
+        <form asp-action="Index" method="get" class="form-inline">
+            <div class="form-actions no-color">
+                <p aria-label="Foco">
+                    Pesquisar:
+                    <input type="text" name="searchString" placeholder="Título/Editora" value="@ViewData["CurrentFilter"]" class="form-control" /><br /><br />
+                    Data Inicio:
+                    <input type="date" name="searchDateIni" value="@ViewData["DateIniFilter"]" class="form-control" /><br /><br />
+                    Data Fim:
+                    <input type="date" name="searchDateFin" value="@ViewData["DateFinFilter"]" class="form-control" />&ensp;
+                    <button type="submit" value="Search" class="btn btn-primary">Pesquisar</button> |
+                    <a asp-action="Index">Voltar para lista completa</a>
+                </p>
+            </div>
+        </form>
+    </div>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @*@Html.DisplayNameFor(model => model.Titulo)*@
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]">@Html.DisplayNameFor(model => model.Titulo)</a>
+            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.Isbn)
+            </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.Editora)
+            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.Sinopse)
+            </th>*@
+            <th>
+                @*@Html.DisplayNameFor(model => model.DataPublicacao)*@
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]">@Html.DisplayNameFor(model => model.DataPublicacao)</a>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Titulo)
+                </td>
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.Isbn)
+                </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.Editora)
+                </td>
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.Sinopse)
+                </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.DataPublicacao)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Detalhes</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Excluir</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

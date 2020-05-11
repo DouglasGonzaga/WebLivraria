@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using WebLivraria.Models;
 
 namespace WebLivraria.Data
 {
@@ -12,5 +13,6 @@ namespace WebLivraria.Data
             : base(options)
         {
         }
+        public DbSet<WebLivraria.Models.Livro> Livro { get; set; }
     }
 }

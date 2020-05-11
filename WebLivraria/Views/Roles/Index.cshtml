@@ -1,0 +1,24 @@
+﻿@model IEnumerable<Microsoft.AspNetCore.Identity.IdentityRole>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Perfis</h2>
+<p>
+    @Html.ActionLink("Criar novo perfil","Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.Label("Nome do perfil")
+        </th>
+    </tr>
+    @foreach(var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelIntem => item.Name)
+            </td>
+        </tr>
+    }
+</table>
